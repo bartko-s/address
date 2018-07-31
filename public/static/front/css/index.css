@@ -1,0 +1,55 @@
+/************************************
+    Reset Browser Default Styles
+*************************************/
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+* {
+    outline: 0;
+}
+
+body, html {
+    font-size: 62.5%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/***********************************
+    Content
+ ***********************************/
+body {
+    font-size: 1.4rem;
+}
+
+.layout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100%;
+    background-color: wheat;
+}
+
+.content {
+    padding: 1rem;
+}
+
+form .form-row {
+    padding: 0.5rem;
+}
+
+form label {
+    width: 11rem;
+    display: inline-block;
+}
+
+form input {
+    width: 22rem;
+    padding: 0.5rem 1rem;
+}

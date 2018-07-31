@@ -1,0 +1,8 @@
+front:
+    resource: ../../src/App/UI/Front/
+    type: annotation
+
+api:
+    resource: ../../src/App/UI/Api/
+    prefix: /api
+    type: annotation
