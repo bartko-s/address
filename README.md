@@ -6,6 +6,7 @@
 
 ## Installation
  - run `composer create-project stefano/address my-project`
+ - create database `database.sql`
  - rename .end.dist to .env and fill it with your settings
  - run import `bin/console import:address`
 
