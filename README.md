@@ -1,4 +1,7 @@
 # Slovak Address API
+
+[![Latest Stable Version](https://poser.pugx.org/stefano/address/v/stable)](https://packagist.org/packages/stefano/address)
+[![License](https://poser.pugx.org/stefano/address/license)](https://packagist.org/packages/stefano/address)
  
 [![Donate on PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/stevo4) 
  
@@ -30,8 +33,8 @@ Response:
 ```
 {
     items: [
+        street, string,
         city: string,
-        number, string,
         postcode: string,
         post_office: string
     ]
