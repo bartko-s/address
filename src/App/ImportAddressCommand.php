@@ -11,6 +11,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 class ImportAddressCommand extends Command
 {
@@ -26,16 +27,30 @@ class ImportAddressCommand extends Command
     protected function configure()
     {
         $this->setName('import:address')
-             ->setDescription('Import street to the database');
+             ->setDescription('Import addresses to the database');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $helper = $this->getHelper('question');
+        $question = new ConfirmationQuestion('This action remove previous import from database. Are you sure you want to continue? (type yes or no)', false);
+
+        if (!$helper->ask($input, $output, $question)) {
+            return;
+        }
+
         set_time_limit(0);
         $this->dbConn->getConfiguration()->setSQLLogger(null); //prevent memory leak
 
+        $this->deleteAll($output);
         $this->importVillages($output);
         $this->importStreets($output);
+    }
+
+    private function deleteAll(OutputInterface $output)
+    {
+        $this->dbConn->executeQuery('DELETE FROM address');
+        $output->writeln('<info>All rows was deleted</info>');
     }
 
     private function importVillages(OutputInterface $output)
