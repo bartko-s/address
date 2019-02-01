@@ -6,11 +6,11 @@ namespace App\UI\Api\Controller;
 
 use App\AddressService;
 use App\Exception\ApiExceptionInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-class AddressController extends Controller
+class AddressController extends AbstractController
 {
     private $addressService;
 
