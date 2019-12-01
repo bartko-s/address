@@ -30,7 +30,7 @@ final class Utils
 
     public static function makeNGrams(string $string, int $minLength = 1): string
     {
-        $result = [];
+        $result = array();
 
         foreach (explode(' ', $string) as $part) {
             $length = strlen($part);

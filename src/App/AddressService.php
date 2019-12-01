@@ -16,28 +16,16 @@ class AddressService
         $this->conn = $conn;
     }
 
-    private $allowedFields = ['street', 'city', 'postcode', 'post_office'];
-    private $allowedFilters = ['street', 'city', 'postcode', 'post_office'];
-    private $allowedOrders = ['street', 'city', 'postcode', 'post_office'];
-    private $allowedDirections = ['asc', 'desc'];
+    private $allowedFields = array('street', 'city', 'postcode', 'post_office');
+    private $allowedFilters = array('street', 'city', 'postcode', 'post_office');
+    private $allowedOrders = array('street', 'city', 'postcode', 'post_office');
+    private $allowedDirections = array('asc', 'desc');
     private $maxLimit = 1000;
 
-    /**
-     * @param array  $fields
-     * @param array  $filters
-     * @param array  $orders
-     * @param string $orderDirection
-     * @param int    $limit
-     * @param int    $offset
-     *
-     * @return array
-     *
-     * @throws BadRequestException
-     */
     public function addressSearch(
-        array $fields = [],
-        array $filters = [],
-        array $orders = [],
+        array $fields = array(),
+        array $filters = array(),
+        array $orders = array(),
         string $orderDirection = 'asc',
         int $limit = 20,
         int $offset = 0
@@ -95,7 +83,7 @@ class AddressService
           .' FROM address';
 
         if (count($filters) > 0) {
-            $where = [];
+            $where = array();
             foreach ($filters as $key => $value) {
                 $where[] .= sprintf("%s_search @@ to_tsquery('simple', :__%s)", $key, $key);
                 $data['__'.$key] = Utils::createQuerySearchString($value);

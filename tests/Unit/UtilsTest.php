@@ -11,16 +11,16 @@ class UtilsTest extends UnitTestCase
 {
     public function makeNGramDataProvider()
     {
-        return [
-            ['a', 1, 'a'],
-            ['ab', 1, 'a b ab'],
-            ['abc', 1, 'a b c ab bc abc'],
-            ['a b', 1, 'a b'],
-            ['ab cd', 1, 'a b c d ab cd'],
-            ['x', 3, 'x'],
-            ['abcde', 3, 'abc bcd cde abcd bcde abcde'],
-            ['abcde fgh', 3, 'abc bcd cde abcd bcde abcde fgh'],
-        ];
+        return array(
+            array('a', 1, 'a'),
+            array('ab', 1, 'a b ab'),
+            array('abc', 1, 'a b c ab bc abc'),
+            array('a b', 1, 'a b'),
+            array('ab cd', 1, 'a b c d ab cd'),
+            array('x', 3, 'x'),
+            array('abcde', 3, 'abc bcd cde abcd bcde abcde'),
+            array('abcde fgh', 3, 'abc bcd cde abcd bcde abcde fgh'),
+        );
     }
 
     /**
@@ -41,15 +41,15 @@ class UtilsTest extends UnitTestCase
 
     public function createQuerySearchStringProvider()
     {
-        return [
-            ['a', 'a'],
-            ['  b   ', 'b'],
-            ['č', 'c'],
-            ['Ď', 'd'],
-            ['', ''],
-            ['ef gh', 'ef & gh'],
-            [' xy  z  ', 'xy & z'],
-        ];
+        return array(
+            array('a', 'a'),
+            array('  b   ', 'b'),
+            array('č', 'c'),
+            array('Ď', 'd'),
+            array('', ''),
+            array('ef gh', 'ef & gh'),
+            array(' xy  z  ', 'xy & z'),
+        );
     }
 
     /**

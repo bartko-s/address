@@ -7,8 +7,8 @@ namespace App\UI\Api\Controller;
 use App\AddressService;
 use App\Exception\ApiExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class AddressController extends AbstractController
 {
@@ -27,9 +27,9 @@ class AddressController extends AbstractController
         try {
             $result = $this->addressService
                 ->addressSearch(
-                    (array) $request->get('fields', []),
-                    (array) $request->get('filters', []),
-                    (array) $request->get('orders', []),
+                    (array) $request->get('fields', array()),
+                    (array) $request->get('filters', array()),
+                    (array) $request->get('orders', array()),
                     (string) $request->get('order-direction', 'asc'),
                     (int) $request->get('limit', 20),
                     (int) $request->get('offset', 0)

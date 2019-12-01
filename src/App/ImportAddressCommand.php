@@ -8,9 +8,9 @@ use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 class ImportAddressCommand extends Command
@@ -102,7 +102,7 @@ class ImportAddressCommand extends Command
         }
 
         $progressBar->finish();
-        $output->writeln(['', sprintf('<info>Success. %s items was imported.</info>', $importedItems)]);
+        $output->writeln(array('', sprintf('<info>Success. %s items was imported.</info>', $importedItems)));
     }
 
     private function importStreets(OutputInterface $output)
@@ -154,20 +154,15 @@ class ImportAddressCommand extends Command
         }
 
         $progressBar->finish();
-        $output->writeln(['', sprintf('<info>Success. %s items was imported.</info>', $importedItems)]);
+        $output->writeln(array('', sprintf('<info>Success. %s items was imported.</info>', $importedItems)));
     }
 
     /**
-     * @param string $street
-     * @param string $city
-     * @param string $postcode
-     * @param string $postOffice
-     *
      * @return int Number of inserted rows
      */
     private function save(string $street, string $city, string $postcode, string $postOffice): int
     {
-        $validData = [];
+        $validData = array();
 
         $city = preg_replace('|([^ ])(-)([^ ])|', '$1 - $3', $city);
         if (0 === strlen($city)) {
