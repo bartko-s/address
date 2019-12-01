@@ -45,6 +45,8 @@ class ImportAddressCommand extends Command
         $this->deleteAll($output);
         $this->importVillages($output);
         $this->importStreets($output);
+
+        return 0;
     }
 
     private function deleteAll(OutputInterface $output)
