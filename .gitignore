@@ -2,6 +2,7 @@
 /docker-compose.yml
 /docker/
 /deploy.sh
+/run.sh
 
 ###> symfony/framework-bundle ###
 /.env

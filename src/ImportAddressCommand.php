@@ -30,13 +30,13 @@ class ImportAddressCommand extends Command
              ->setDescription('Import addresses to the database');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $helper = $this->getHelper('question');
         $question = new ConfirmationQuestion('This action remove previous import from database. Are you sure you want to continue? (type yes or no)', false);
 
         if (!$helper->ask($input, $output, $question)) {
-            return;
+            return self::FAILURE;
         }
 
         set_time_limit(0);
@@ -46,7 +46,7 @@ class ImportAddressCommand extends Command
         $this->importVillages($output);
         $this->importStreets($output);
 
-        return 0;
+        return self::SUCCESS;
     }
 
     private function deleteAll(OutputInterface $output)
@@ -60,11 +60,11 @@ class ImportAddressCommand extends Command
         $rowNumber = 1;
         $importedItems = 0;
 
-        $inputFileName = __DIR__.'/../../import/OBCE.XLSX';
+        $inputFileName = __DIR__.'/../import/OBCE.XLSX';
         $spreadsheet = IOFactory::load($inputFileName);
 
         $worksheet = $spreadsheet->getSheet(0);
-        $rows = (int) $worksheet->getHighestRow(0);
+        $rows = $worksheet->getHighestRow();
 
         $progressBar = new ProgressBar($output, $rows);
         $progressBar->setFormat('%current% [%bar%] Elapsed: %elapsed%, Memory usage: %memory%');
@@ -112,11 +112,11 @@ class ImportAddressCommand extends Command
         $rowNumber = 1;
         $importedItems = 0;
 
-        $inputFileName = __DIR__.'/../../import/ULICE.XLSX';
+        $inputFileName = __DIR__.'/../import/ULICE.XLSX';
         $spreadsheet = IOFactory::load($inputFileName);
 
         $worksheet = $spreadsheet->getSheet(0);
-        $rows = (int) $worksheet->getHighestRow(0);
+        $rows = (int) $worksheet->getHighestRow();
 
         $progressBar = new ProgressBar($output, $rows);
         $progressBar->setFormat('%current% [%bar%] Elapsed: %elapsed%, Memory usage: %memory%');

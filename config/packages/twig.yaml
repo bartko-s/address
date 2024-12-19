@@ -1,6 +1,8 @@
 twig:
+    file_name_pattern: '*.twig'
     paths:
         '%kernel.project_dir%/templates/front' : Front
-    debug: '%kernel.debug%'
-    strict_variables: '%kernel.debug%'
-    exception_controller: null
+
+when@test:
+    twig:
+        strict_variables: true

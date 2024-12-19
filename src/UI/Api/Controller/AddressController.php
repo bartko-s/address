@@ -8,7 +8,7 @@ use App\AddressService;
 use App\Exception\ApiExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class AddressController extends AbstractController
 {
@@ -19,9 +19,7 @@ class AddressController extends AbstractController
         $this->addressService = $addressService;
     }
 
-    /**
-     * @Route("/address")
-     */
+    #[Route('/api/address')]
     public function execute(Request $request)
     {
         try {
