@@ -40,7 +40,6 @@ class ImportAddressCommand extends Command
         }
 
         set_time_limit(0);
-        $this->dbConn->getConfiguration()->setSQLLogger(null); //prevent memory leak
 
         $this->deleteAll($output);
         $this->importVillages($output);
